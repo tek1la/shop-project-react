@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import Header from './Header'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 // whithout jsx
@@ -8,19 +9,6 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 // whith jsx
 // let a = 10
 // const el = <h1 id="title">Hello title! {a}</h1>
-
-type HeaderType = {
-    title: string
-    num?: number
-}
-
-const Header = (props: HeaderType) => {
-    return (
-        <h1>
-            Hello world, {props.title} {props.num}
-        </h1>
-    )
-}
 
 const el2 = (
     <div>
@@ -62,8 +50,8 @@ function Content() {
 const App = () => {
     return (
         <>
-            <Header title="App.js" num={10} />
-            <Header title="React.js" />
+            <Header title="App.js" num={10} bgColor="red" position />
+            <Header title="React.js" bgColor="purple" />
             <Content />
         </>
     )
