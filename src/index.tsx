@@ -6,8 +6,21 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 // const el = React.createElement('h1', { id: 'title' }, 'Hello title!')
 
 // whith jsx
-let a = 10
-const el = <h1 id="title">Hello title! {a}</h1>
+// let a = 10
+// const el = <h1 id="title">Hello title! {a}</h1>
+
+type HeaderType = {
+    title: string
+    num?: number
+}
+
+const Header = (props: HeaderType) => {
+    return (
+        <h1>
+            Hello world, {props.title} {props.num}
+        </h1>
+    )
+}
 
 const el2 = (
     <div>
@@ -27,23 +40,32 @@ const el2 = (
     </div>
 )
 
+function Content() {
+    return (
+        <React.Fragment>
+            <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam
+                odio repellendus, beatae laudantium ratione earum eos molestiae
+                pariatur vitae tempore. Mollitia maiores tempora nostrum minima
+                beatae distinctio iste aliquid impedit.
+            </p>
+            <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam
+                odio repellendus, beatae laudantium ratione earum eos molestiae
+                pariatur vitae tempore. Mollitia maiores tempora nostrum minima
+                beatae distinctio iste aliquid impedit.
+            </p>
+        </React.Fragment>
+    )
+}
+
 const App = () => {
     return (
-        <div>
-            <h1>Hello Title 2!</h1>
-            <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Aliquid nisi ipsam, vitae perferendis impedit temporibus modi at
-                quasi ad incidunt quae atque consequuntur dolorem itaque
-                explicabo unde veritatis blanditiis esse.
-            </p>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Est,
-                beatae ullam aliquam sequi id ab adipisci nobis laboriosam ipsa
-                odio, excepturi hic fugit error totam laborum in, esse sapiente
-                distinctio?
-            </p>
-        </div>
+        <>
+            <Header title="App.js" num={10} />
+            <Header title="React.js" />
+            <Content />
+        </>
     )
 }
 root.render(
