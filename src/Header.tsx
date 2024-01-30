@@ -5,16 +5,16 @@ type HeaderType = {
     position?: boolean
 }
 
-const Header = (props: HeaderType) => {
+const Header = ({ title, num, bgColor, position }: HeaderType) => {
     const style = {
-        backgroundColor: props.bgColor,
-        color: props.position ? 'white' : 'black',
+        backgroundColor: bgColor,
+        color: position ? 'white' : 'black',
         padding: '15px',
     }
 
     return (
         <h1 style={style}>
-            Hello world, {props.title} {props.num}
+            Hello world, {title} {num}
         </h1>
     )
 }
