@@ -7,11 +7,7 @@ type HeaderType = {
 
 const Header = ({ title, num }: HeaderType) => {
     return (
-        <h1
-            className={clsx('title', {
-                red: num === 10,
-            })}
-        >
+        <h1 className={`title ${num === 10 ? 'red' : ''}`}>
             Hello world, {title} {num}
         </h1>
     )
