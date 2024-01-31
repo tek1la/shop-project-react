@@ -1,19 +1,17 @@
+import './Header.css'
+import clsx from 'clsx'
 type HeaderType = {
     title: string
     num?: number
-    bgColor: string
-    position?: boolean
 }
 
-const Header = ({ title, num, bgColor, position }: HeaderType) => {
-    const style = {
-        backgroundColor: bgColor,
-        color: position ? 'white' : 'black',
-        padding: '15px',
-    }
-
+const Header = ({ title, num }: HeaderType) => {
     return (
-        <h1 style={style}>
+        <h1
+            className={clsx('title', {
+                red: num === 10,
+            })}
+        >
             Hello world, {title} {num}
         </h1>
     )
