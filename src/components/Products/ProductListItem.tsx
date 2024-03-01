@@ -1,16 +1,28 @@
 import { Button, Card, CardContent } from '@mui/material'
 import './ProductListItem.css'
 
-type Props = {}
-const ProductListItem = (props: Props) => {
+type ProductListItemType = {
+    title: string
+    description: string
+    type: string
+    capacity: string
+    price: number
+}
+const ProductListItem = ({
+    title,
+    description,
+    type,
+    capacity,
+    price,
+}: ProductListItemType) => {
     return (
         <Card className="product-list-item" variant="outlined">
             <CardContent>
-                <h2 className="product-title">Iphone 15 Pro</h2>
-                <p className="product-description">This is Iphon 15 Pro</p>
-                <div className="product-features">Type: Phone</div>
-                <div className="product-features">Capacity: 128 GB</div>
-                <div className="product-price">$ 1000</div>
+                <h2 className="product-title">{title}</h2>
+                <p className="product-description">{description}</p>
+                <div className="product-features">Type: {type}</div>
+                <div className="product-features">Capacity: {capacity}Gb</div>
+                <div className="product-price">$ {price}</div>
                 <div className="btn-wrap">
                     <Button variant="outlined">Add to cart</Button>
                 </div>
