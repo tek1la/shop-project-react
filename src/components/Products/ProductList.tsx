@@ -9,7 +9,13 @@ const ProductList = (props: Props) => {
             <Typography variant="h4" component="h1">
                 List of Products
             </Typography>
-            <Grid container spacing={4}>
+            <Grid
+                container
+                spacing={4}
+                sx={{
+                    marginTop: '30px',
+                }}
+            >
                 {productsArray.map(
                     ({ id, title, description, capacity, type, price }) => (
                         <Grid item xs={12} sm={6} md={4} key={id}>
