@@ -21,3 +21,21 @@
     display: flex;
     justify-content: center;
 }
+
+.product-img {
+    text-align: center;
+}
+
+.product-img img {
+    width: 150px;
+    height: auto;
+}
+
+.product-quantity {
+    margin-bottom: 20px;
+    display: flex;
+}
+
+.product-quantity input {
+    text-align: center;
+}
