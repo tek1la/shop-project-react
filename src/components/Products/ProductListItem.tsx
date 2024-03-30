@@ -9,6 +9,8 @@ type ProductListItemType = {
     capacity: string
     price: number
     images: string
+    totalCount: number
+    totalPrice: number
 }
 const ProductListItem = ({
     title,
@@ -17,9 +19,11 @@ const ProductListItem = ({
     capacity,
     price,
     images,
+    totalCount,
+    totalPrice,
 }: ProductListItemType) => {
     const [count, setCount] = useState<number>(1)
-    const [color, setColor] = useState<string>('Green')
+    const [toCart, setToCart] = useState<number>(0)
 
     const onIncrementClick = () => {
         setCount((prevState) => prevState + 1)
@@ -27,8 +31,10 @@ const ProductListItem = ({
     const onDecrementClick = () => {
         setCount((prevState) => prevState - 1)
     }
-    const onChangeColorClick = () => {
-        setColor((prevState) => (prevState === 'Green' ? 'Red' : 'Green'))
+    const addToCart = () => {
+        setToCart((prevState) => prevState + count)
+        totalCount += toCart
+        console.log(totalCount)
     }
 
     return (
@@ -42,12 +48,6 @@ const ProductListItem = ({
                 <div className="product-features">Type: {type}</div>
                 <div className="product-features">Capacity: {capacity}Gb</div>
                 <div className="product-price">$ {price}</div>
-                <div>
-                    <p>
-                        Color: <span className={color}>{color}</span>
-                    </p>
-                    <Button onClick={onChangeColorClick}>Change color</Button>
-                </div>
                 <div className="product-quantity">
                     <Button
                         variant="outlined"
@@ -62,7 +62,9 @@ const ProductListItem = ({
                     </Button>
                 </div>
                 <div className="btn-wrap">
-                    <Button variant="outlined">Add to cart</Button>
+                    <Button variant="outlined" onClick={addToCart}>
+                        Add to cart
+                    </Button>
                 </div>
             </CardContent>
         </Card>
