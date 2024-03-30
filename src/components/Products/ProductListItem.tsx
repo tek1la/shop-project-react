@@ -1,6 +1,6 @@
 import { Button, Card, CardContent, TextField } from '@mui/material'
 import './ProductListItem.css'
-import { Component, ReactNode } from 'react'
+import { Component } from 'react'
 
 type ProductListItemType = {
     title: string
@@ -13,11 +13,15 @@ type ProductListItemType = {
 
 type State = {
     count: number
+    color: string
+    textColor: string
 }
 
 class ProductListItem extends Component<ProductListItemType, State> {
     state = {
         count: 1,
+        color: 'Green',
+        textColor: 'green',
     }
 
     onIncrementClick = () => {
@@ -28,6 +32,12 @@ class ProductListItem extends Component<ProductListItemType, State> {
     onDecrementClick() {
         this.setState((prevState) => ({
             count: prevState.count - 1,
+        }))
+    }
+    changeColor = () => {
+        this.setState((prevState) => ({
+            color: prevState.color === 'Green' ? 'Red' : 'Green',
+            textColor: prevState.textColor === 'red' ? 'green' : 'red',
         }))
     }
 
@@ -44,6 +54,17 @@ class ProductListItem extends Component<ProductListItemType, State> {
                     <div className="product-features">Type: {type}</div>
                     <div className="product-features">
                         Capacity: {capacity}Gb
+                    </div>
+                    <div>
+                        <div>
+                            Color:
+                            <span className={this.state.textColor}>
+                                {this.state.color}
+                            </span>
+                        </div>
+                        <Button onClick={this.changeColor} variant="outlined">
+                            Change color
+                        </Button>
                     </div>
                     <div className="product-price">$ {price}</div>
                     <div className="product-quantity">
