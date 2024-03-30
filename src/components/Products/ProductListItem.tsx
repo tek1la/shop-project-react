@@ -19,12 +19,16 @@ const ProductListItem = ({
     images,
 }: ProductListItemType) => {
     const [count, setCount] = useState<number>(1)
+    const [color, setColor] = useState<string>('Green')
 
     const onIncrementClick = () => {
         setCount((prevState) => prevState + 1)
     }
     const onDecrementClick = () => {
         setCount((prevState) => prevState - 1)
+    }
+    const onChangeColorClick = () => {
+        setColor((prevState) => (prevState === 'Green' ? 'Red' : 'Green'))
     }
 
     return (
@@ -38,8 +42,18 @@ const ProductListItem = ({
                 <div className="product-features">Type: {type}</div>
                 <div className="product-features">Capacity: {capacity}Gb</div>
                 <div className="product-price">$ {price}</div>
+                <div>
+                    <p>
+                        Color: <span className={color}>{color}</span>
+                    </p>
+                    <Button onClick={onChangeColorClick}>Change color</Button>
+                </div>
                 <div className="product-quantity">
-                    <Button variant="outlined" onClick={onDecrementClick}>
+                    <Button
+                        variant="outlined"
+                        onClick={onDecrementClick}
+                        disabled={count <= 1}
+                    >
                         -
                     </Button>
                     <TextField size="small" value={count} />
