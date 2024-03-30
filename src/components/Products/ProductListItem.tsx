@@ -15,6 +15,9 @@ type State = {
     count: number
     color: string
     textColor: string
+    toggleText: string
+    isShow: boolean
+    // disabled: boolean
 }
 
 class ProductListItem extends Component<ProductListItemType, State> {
@@ -22,22 +25,38 @@ class ProductListItem extends Component<ProductListItemType, State> {
         count: 1,
         color: 'Green',
         textColor: 'green',
+        toggleText: 'hide',
+        isShow: false,
+        // disabled: true,
     }
 
     onIncrementClick = () => {
         this.setState((prevState) => ({
             count: prevState.count + 1,
+            // disabled: prevState.count <= 0 ? true : false,
         }))
     }
     onDecrementClick() {
         this.setState((prevState) => ({
             count: prevState.count - 1,
+            // disabled: prevState.count <= 2 ? true : false,
         }))
     }
     changeColor = () => {
         this.setState((prevState) => ({
             color: prevState.color === 'Green' ? 'Red' : 'Green',
             textColor: prevState.textColor === 'red' ? 'green' : 'red',
+        }))
+    }
+    toggleTextClick = () => {
+        this.setState((prevState) => ({
+            toggleText: prevState.toggleText === 'hide' ? 'show' : 'hide',
+        }))
+    }
+
+    toggleText = () => {
+        this.setState((prevState) => ({
+            isShow: !prevState.isShow,
         }))
     }
 
@@ -66,11 +85,39 @@ class ProductListItem extends Component<ProductListItemType, State> {
                             Change color
                         </Button>
                     </div>
+                    <Button onClick={this.toggleText}>Show</Button>
+                    {this.state.isShow ? (
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur, adipisicing
+                            elit. Unde quos asperiores temporibus totam in odio
+                            facere beatae? Libero odio non possimus, dolore,
+                            laborum quidem repudiandae quasi iste explicabo,
+                            quaerat tenetur.
+                        </p>
+                    ) : null}
+                    <div>
+                        <Button
+                            variant="outlined"
+                            onClick={() => this.toggleTextClick()}
+                        >
+                            Show description
+                        </Button>
+                    </div>
+                    <div className={this.state.toggleText}>
+                        <p>
+                            Lorem, ipsum dolor sit amet consectetur adipisicing
+                            elit. Illum voluptatem voluptates et nisi magni eos
+                            explicabo. Quos blanditiis, qui ducimus, atque
+                            magnam distinctio ipsa cumque beatae, provident
+                            sequi quisquam nulla.
+                        </p>
+                    </div>
                     <div className="product-price">$ {price}</div>
                     <div className="product-quantity">
                         <Button
                             onClick={() => this.onDecrementClick()}
                             variant="outlined"
+                            disabled={this.state.count <= 1}
                         >
                             -
                         </Button>
