@@ -9,8 +9,7 @@ type ProductListItemType = {
     capacity: string
     price: number
     images: string
-    totalCount: number
-    totalPrice: number
+    addToCart: (productCount: any, productPrice: any) => void
 }
 const ProductListItem = ({
     title,
@@ -19,11 +18,9 @@ const ProductListItem = ({
     capacity,
     price,
     images,
-    totalCount,
-    totalPrice,
+    addToCart,
 }: ProductListItemType) => {
     const [count, setCount] = useState<number>(1)
-    const [toCart, setToCart] = useState<number>(0)
 
     const onIncrementClick = () => {
         setCount((prevState) => prevState + 1)
@@ -31,10 +28,9 @@ const ProductListItem = ({
     const onDecrementClick = () => {
         setCount((prevState) => prevState - 1)
     }
-    const addToCart = () => {
-        setToCart((prevState) => prevState + count)
-        totalCount += toCart
-        console.log(totalCount)
+    const addingToCart = () => {
+        const totalPrice: number = price * count
+        addToCart(count, totalPrice)
     }
 
     return (
@@ -62,7 +58,7 @@ const ProductListItem = ({
                     </Button>
                 </div>
                 <div className="btn-wrap">
-                    <Button variant="outlined" onClick={addToCart}>
+                    <Button variant="outlined" onClick={addingToCart}>
                         Add to cart
                     </Button>
                 </div>

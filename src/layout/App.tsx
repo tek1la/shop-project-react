@@ -16,15 +16,20 @@ const App = (props: Props) => {
         totalCount: 0,
         totalPrice: 0,
     })
+
+    const addToCart = (productCount: number, productPrice: number) => {
+        setCartData((prevState) => ({
+            ...prevState,
+            totalCount: prevState.totalCount + productCount,
+            totalPrice: prevState.totalPrice + productPrice,
+        }))
+    }
     return (
         <>
             <StyledEngineProvider injectFirst>
                 <CssBaseline />
                 <Header cartData={cartData} />
-                <Main
-                    totalCount={cartData.totalCount}
-                    totalPrice={cartData.totalPrice}
-                />
+                <Main addToCart={addToCart} />
                 <Footer />
             </StyledEngineProvider>
         </>

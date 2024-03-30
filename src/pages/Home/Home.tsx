@@ -1,13 +1,12 @@
 import ProductList from 'components/Products/ProductList'
 
-type CartDataType = {
-    totalCount: number
-    totalPrice: number
+type Props = {
+    addToCart: (productCount: any, productPrice: any) => void
 }
-const Home = ({ totalCount, totalPrice }: CartDataType) => {
+const Home = ({ addToCart }: Props) => {
     return (
         <>
-            <ProductList totalCount={totalCount} totalPrice={totalPrice} />
+            <ProductList addToCart={addToCart} />
         </>
     )
 }
