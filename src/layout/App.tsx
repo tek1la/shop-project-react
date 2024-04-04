@@ -7,28 +7,26 @@ import { useState } from 'react'
 
 type Props = {}
 
-type CartDataType = {
-    totalCount: number
-    totalPrice: number
+type ProducrsInCartType = {
+    [id: number]: number
 }
 const App = (props: Props) => {
-    const [cartData, setCartData] = useState<CartDataType>({
-        totalCount: 0,
-        totalPrice: 0,
+    const [productsInCart, setProductsInCart] = useState<ProducrsInCartType>({
+        1: 5,
+        2: 5,
     })
 
-    const addToCart = (productCount: number, productPrice: number) => {
-        setCartData((prevState) => ({
+    const addToCart = (id: number, count: number) => {
+        setProductsInCart((prevState) => ({
             ...prevState,
-            totalCount: prevState.totalCount + productCount,
-            totalPrice: prevState.totalPrice + productPrice,
+            [id]: (prevState[id] || 0) + count,
         }))
     }
     return (
         <>
             <StyledEngineProvider injectFirst>
                 <CssBaseline />
-                <Header cartData={cartData} />
+                <Header productsInCart={productsInCart} />
                 <Main addToCart={addToCart} />
                 <Footer />
             </StyledEngineProvider>

@@ -3,15 +3,17 @@ import './ProductListItem.css'
 import { useState } from 'react'
 
 type ProductListItemType = {
+    id: number
     title: string
     description: string
     type: string
     capacity: string
     price: number
     images: string
-    addToCart: (productCount: any, productPrice: any) => void
+    addToCart: (id: number, count: number) => void
 }
 const ProductListItem = ({
+    id,
     title,
     description,
     type,
@@ -29,8 +31,7 @@ const ProductListItem = ({
         setCount((prevState) => prevState - 1)
     }
     const addingToCart = () => {
-        const totalPrice: number = price * count
-        addToCart(count, totalPrice)
+        addToCart(id, count)
     }
 
     return (
