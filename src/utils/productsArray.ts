@@ -64,3 +64,12 @@ export const productsArray: Product[] = [
         images: '/images/iphone13.webp'
     },
 ]
+
+export const getProductsObject = (array: Product[]) => 
+array.reduce(
+    (object, product) => ({
+        ...object,
+        [product.id]: product,
+    }),
+    {}
+)
