@@ -22,6 +22,7 @@ const CartProductList = ({
                     key={+productId}
                     product={productsObject[+productId]}
                     productCount={productsInCart[+productId]}
+                    // deleteProductItem={deleteProductItem}
                 />
             ))}
         </>

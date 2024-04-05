@@ -3,7 +3,7 @@ import Footer from './Footer'
 import CssBaseline from '@mui/material/CssBaseline'
 import { StyledEngineProvider } from '@mui/material/styles'
 import { useState } from 'react'
-import { Container } from '@mui/material'
+import { Button, Container } from '@mui/material'
 import { Route, Routes } from 'react-router-dom'
 import CartPage from 'pages/CartPage/CartPage'
 import Home from 'pages/Home/Home'
@@ -22,6 +22,13 @@ const App = (props: Props) => {
             [id]: (prevState[id] || 0) + count,
         }))
     }
+    const deleteProductItem = (productId: number) => {
+        setProductsInCart((prevState) => {
+            let prevProductsInCart = { ...prevState }
+            delete prevProductsInCart[productId]
+            return prevProductsInCart
+        })
+    }
     return (
         <>
             <StyledEngineProvider injectFirst>
@@ -33,6 +40,13 @@ const App = (props: Props) => {
                         padding: '50px 0',
                     }}
                 >
+                    <Button
+                        onClick={() => {
+                            deleteProductItem(1)
+                        }}
+                    >
+                        delete
+                    </Button>
                     <Routes>
                         <Route
                             path="//"
