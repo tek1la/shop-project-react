@@ -3,10 +3,11 @@ import Footer from './Footer'
 import CssBaseline from '@mui/material/CssBaseline'
 import { StyledEngineProvider } from '@mui/material/styles'
 import { useState } from 'react'
-import { Button, Container } from '@mui/material'
+import { Container } from '@mui/material'
 import { Route, Routes } from 'react-router-dom'
 import CartPage from 'pages/CartPage/CartPage'
 import Home from 'pages/Home/Home'
+import { omit } from 'lodash'
 
 type Props = {}
 
@@ -23,11 +24,7 @@ const App = (props: Props) => {
         }))
     }
     const deleteProductItem = (productId: number) => {
-        setProductsInCart((prevState) => {
-            let prevProductsInCart = { ...prevState }
-            delete prevProductsInCart[productId]
-            return prevProductsInCart
-        })
+        setProductsInCart((prevState) => omit(prevState, productId))
     }
     return (
         <>
@@ -40,13 +37,6 @@ const App = (props: Props) => {
                         padding: '50px 0',
                     }}
                 >
-                    <Button
-                        onClick={() => {
-                            deleteProductItem(1)
-                        }}
-                    >
-                        delete
-                    </Button>
                     <Routes>
                         <Route
                             path="//"
@@ -55,7 +45,10 @@ const App = (props: Props) => {
                         <Route
                             path="cart"
                             element={
-                                <CartPage productsInCart={productsInCart} />
+                                <CartPage
+                                    productsInCart={productsInCart}
+                                    deleteProductItem={deleteProductItem}
+                                />
                             }
                         />
                     </Routes>
