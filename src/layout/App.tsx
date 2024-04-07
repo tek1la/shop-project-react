@@ -26,6 +26,18 @@ const App = (props: Props) => {
     const deleteProductItem = (productId: number) => {
         setProductsInCart((prevState) => omit(prevState, productId))
     }
+    const onCartIncrementClick = (productId: number) => {
+        setProductsInCart((prevState) => ({
+            ...prevState,
+            [productId]: prevState[productId] + 1,
+        }))
+    }
+    const onCartDecrementClick = (productId: number) => {
+        setProductsInCart((prevState) => ({
+            ...prevState,
+            [productId]: prevState[productId] - 1,
+        }))
+    }
     return (
         <>
             <StyledEngineProvider injectFirst>
@@ -48,6 +60,8 @@ const App = (props: Props) => {
                                 <CartPage
                                     productsInCart={productsInCart}
                                     deleteProductItem={deleteProductItem}
+                                    onCartIncrementClick={onCartIncrementClick}
+                                    onCartDecrementClick={onCartDecrementClick}
                                 />
                             }
                         />

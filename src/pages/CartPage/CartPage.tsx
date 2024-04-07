@@ -12,25 +12,43 @@ type Props = {
         [id: number]: Product
     }
     deleteProductItem: (productId: number) => void
+    onCartIncrementClick: (productId: number) => void
+    onCartDecrementClick: (productId: number) => void
 }
 const CartPage = ({
     productsInCart,
     productsObject = getProductsObject(productsArray),
     deleteProductItem,
+    onCartIncrementClick,
+    onCartDecrementClick,
 }: Props) => {
     return (
         <div>
-            <Typography component={'h1'} variant="h4">
-                Cart
-            </Typography>
+            <Grid
+                sx={{
+                    marginBottom: '20px',
+                }}
+            >
+                <Typography component={'h1'} variant="h4">
+                    Cart
+                </Typography>
+            </Grid>
             <Grid container spacing={4}>
                 <CartProductList
                     productsInCart={productsInCart}
                     CartItem={CartProductListItemExtended}
                     deleteProductItem={deleteProductItem}
+                    onCartIncrementClick={onCartIncrementClick}
+                    onCartDecrementClick={onCartDecrementClick}
                 />
             </Grid>
-            <CartTotal productsInCart={productsInCart} />
+            <Grid
+                sx={{
+                    marginTop: '20px',
+                }}
+            >
+                <CartTotal productsInCart={productsInCart} />
+            </Grid>
         </div>
     )
 }

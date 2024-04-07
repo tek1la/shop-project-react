@@ -1,4 +1,4 @@
-import { Button, Card, CardContent, Grid } from '@mui/material'
+import { Button, Card, CardContent, Grid, TextField } from '@mui/material'
 import { Product } from 'utils/productsArray'
 import DeleteIcon from '@mui/icons-material/Delete'
 
@@ -6,9 +6,13 @@ type Props = {
     product: Product
     productCount: number
     deleteProductItem: (productId: number) => void
+    onCartIncrementClick?: (productId: number) => void
+    onCartDecrementClick?: (productId: number) => void
 }
 const CartProductListItemExtended = ({
     deleteProductItem,
+    onCartIncrementClick,
+    onCartDecrementClick,
     product,
     productCount,
 }: Props) => {
@@ -22,6 +26,26 @@ const CartProductListItemExtended = ({
                     <h3>{product.title}</h3>
                     <p>Price for one item: {product.price}</p>
                     <p>Count: {productCount}</p>
+                    <div className="product-quantity">
+                        <Button
+                            variant="outlined"
+                            onClick={() =>
+                                onCartDecrementClick?.(Number(product.id))
+                            }
+                            disabled={productCount <= 1}
+                        >
+                            -
+                        </Button>
+                        <TextField size="small" value={productCount} />
+                        <Button
+                            variant="outlined"
+                            onClick={() =>
+                                onCartIncrementClick?.(Number(product.id))
+                            }
+                        >
+                            +
+                        </Button>
+                    </div>
                     <Button
                         variant="outlined"
                         onClick={() => deleteProductItem(+product.id)}
