@@ -25,7 +25,6 @@ const App = (props: Props) => {
     }
     const deleteProductItem = (productId: number) => {
         setProductsInCart((prevState) => omit(prevState, productId))
-        console.log('deleted')
     }
     const changeProductQuantity = (productId: number, count: number) => {
         setProductsInCart((prevState) => ({
