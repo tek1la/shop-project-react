@@ -1,18 +1,17 @@
-import { Button, Card, CardContent, Grid, TextField } from '@mui/material'
+import { Button, Card, CardContent, Grid } from '@mui/material'
 import { Product } from 'utils/productsArray'
 import DeleteIcon from '@mui/icons-material/Delete'
+import Quantity from 'components/Quantity/Quantity'
 
 type Props = {
     product: Product
     productCount: number
     deleteProductItem: (productId: number) => void
-    onCartIncrementClick?: (productId: number) => void
-    onCartDecrementClick?: (productId: number) => void
+    changeProductQuantity: (productId: number, count: number) => void
 }
 const CartProductListItemExtended = ({
     deleteProductItem,
-    onCartIncrementClick,
-    onCartDecrementClick,
+    changeProductQuantity,
     product,
     productCount,
 }: Props) => {
@@ -26,26 +25,23 @@ const CartProductListItemExtended = ({
                     <h3>{product.title}</h3>
                     <p>Price for one item: {product.price}</p>
                     <p>Count: {productCount}</p>
-                    <div className="product-quantity">
-                        <Button
-                            variant="outlined"
-                            onClick={() =>
-                                onCartDecrementClick?.(Number(product.id))
-                            }
-                            disabled={productCount <= 1}
-                        >
-                            -
-                        </Button>
-                        <TextField size="small" value={productCount} />
-                        <Button
-                            variant="outlined"
-                            onClick={() =>
-                                onCartIncrementClick?.(Number(product.id))
-                            }
-                        >
-                            +
-                        </Button>
-                    </div>
+                    <Quantity
+                        count={productCount}
+                        onIncrementClick={() =>
+                            changeProductQuantity(product.id, productCount + 1)
+                        }
+                        disabled={true}
+                        onDecrementClick={
+                            () =>
+                                productCount === 1
+                                    ? deleteProductItem(+product.id)
+                                    : changeProductQuantity(
+                                          product.id,
+                                          productCount - 1
+                                      )
+                            // changeProductQuantity(product.id, productCount - 1)
+                        }
+                    />
                     <Button
                         variant="outlined"
                         onClick={() => deleteProductItem(+product.id)}

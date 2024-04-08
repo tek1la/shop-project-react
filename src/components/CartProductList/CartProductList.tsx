@@ -10,16 +10,14 @@ type Props = {
     }
     CartItem?: any
     deleteProductItem?: (productId: number) => void
-    onCartIncrementClick?: (productId: number) => void
-    onCartDecrementClick?: (productId: number) => void
+    changeProductQuantity?: (productId: number, count: number) => void
 }
 const CartProductList = ({
     productsInCart,
     productsObject = getProductsObject(productsArray),
     CartItem = CartProductListItem,
     deleteProductItem,
-    onCartIncrementClick,
-    onCartDecrementClick,
+    changeProductQuantity,
 }: Props) => {
     return (
         <>
@@ -29,8 +27,7 @@ const CartProductList = ({
                     product={productsObject[+productId]}
                     productCount={productsInCart[+productId]}
                     deleteProductItem={deleteProductItem}
-                    onCartIncrementClick={onCartIncrementClick}
-                    onCartDecrementClick={onCartDecrementClick}
+                    changeProductQuantity={changeProductQuantity}
                 />
             ))}
         </>

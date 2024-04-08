@@ -2,25 +2,18 @@ import { Grid, Typography } from '@mui/material'
 import CartProductList from 'components/CartProductList/CartProductList'
 import CartProductListItemExtended from 'components/CartProductList/CartProductListItemExtended'
 import CartTotal from 'components/CartTotal/CartTotal'
-import { Product, getProductsObject, productsArray } from 'utils/productsArray'
 
 type Props = {
     productsInCart: {
         [id: number]: number
     }
-    productsObject?: {
-        [id: number]: Product
-    }
     deleteProductItem: (productId: number) => void
-    onCartIncrementClick: (productId: number) => void
-    onCartDecrementClick: (productId: number) => void
+    changeProductQuantity: (productId: number, count: number) => void
 }
 const CartPage = ({
     productsInCart,
-    productsObject = getProductsObject(productsArray),
     deleteProductItem,
-    onCartIncrementClick,
-    onCartDecrementClick,
+    changeProductQuantity,
 }: Props) => {
     return (
         <div>
@@ -38,8 +31,7 @@ const CartPage = ({
                     productsInCart={productsInCart}
                     CartItem={CartProductListItemExtended}
                     deleteProductItem={deleteProductItem}
-                    onCartIncrementClick={onCartIncrementClick}
-                    onCartDecrementClick={onCartDecrementClick}
+                    changeProductQuantity={changeProductQuantity}
                 />
             </Grid>
             <Grid

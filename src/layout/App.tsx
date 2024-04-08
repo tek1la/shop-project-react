@@ -25,17 +25,12 @@ const App = (props: Props) => {
     }
     const deleteProductItem = (productId: number) => {
         setProductsInCart((prevState) => omit(prevState, productId))
+        console.log('deleted')
     }
-    const onCartIncrementClick = (productId: number) => {
+    const changeProductQuantity = (productId: number, count: number) => {
         setProductsInCart((prevState) => ({
             ...prevState,
-            [productId]: prevState[productId] + 1,
-        }))
-    }
-    const onCartDecrementClick = (productId: number) => {
-        setProductsInCart((prevState) => ({
-            ...prevState,
-            [productId]: prevState[productId] - 1,
+            [productId]: count,
         }))
     }
     return (
@@ -60,8 +55,9 @@ const App = (props: Props) => {
                                 <CartPage
                                     productsInCart={productsInCart}
                                     deleteProductItem={deleteProductItem}
-                                    onCartIncrementClick={onCartIncrementClick}
-                                    onCartDecrementClick={onCartDecrementClick}
+                                    changeProductQuantity={
+                                        changeProductQuantity
+                                    }
                                 />
                             }
                         />
