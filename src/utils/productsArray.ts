@@ -6,6 +6,7 @@ export type Product = {
     capacity: string
     price: number
     images: string
+    like: boolean
 }
 
 export const productsArray: Product[] = [
@@ -16,7 +17,8 @@ export const productsArray: Product[] = [
         type: "phone",
         capacity: "256",
         price: 2000,
-        images: '/images/iphone15promax.webp'
+        images: '/images/iphone15promax.webp',
+        like: false
     },
     {
         id: 2,
@@ -25,7 +27,8 @@ export const productsArray: Product[] = [
         type: "phone",
         capacity: "128",
         price: 1500,
-        images: '/images/iphone15pro.webp'
+        images: '/images/iphone15pro.webp',
+        like: false
     },
     {
         id: 3,
@@ -34,7 +37,8 @@ export const productsArray: Product[] = [
         type: "phone",
         capacity: "64",
         price: 1000,
-        images: '/images/iphone13.webp'
+        images: '/images/iphone13.webp',
+        like: false
     },
     {
         id: 4,
@@ -43,7 +47,8 @@ export const productsArray: Product[] = [
         type: "phone",
         capacity: "512",
         price: 2000,
-        images: '/images/iphone15promax.webp'
+        images: '/images/iphone15promax.webp',
+        like: false
     },
     {
         id: 5,
@@ -52,7 +57,8 @@ export const productsArray: Product[] = [
         type: "phone",
         capacity: "128",
         price: 1000,
-        images: '/images/iphone15pro.webp'
+        images: '/images/iphone15pro.webp',
+        like: false
     },
     {
         id: 6,
@@ -61,7 +67,8 @@ export const productsArray: Product[] = [
         type: "phone",
         capacity: "128",
         price: 1500,
-        images: '/images/iphone13.webp'
+        images: '/images/iphone13.webp',
+        like: false
     },
 ]
 

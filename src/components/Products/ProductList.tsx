@@ -4,9 +4,13 @@ import { productsArray } from 'utils/productsArray'
 
 type Props = {
     addToCart: (id: number, count: number) => void
+    changeLikeBtn: (poductId: number) => void
+    likeBtn: {
+        [id: number]: boolean
+    }
 }
 
-const ProductList = ({ addToCart }: Props) => {
+const ProductList = ({ addToCart, changeLikeBtn, likeBtn }: Props) => {
     return (
         <>
             <Typography variant="h4" component="h1">
@@ -16,7 +20,7 @@ const ProductList = ({ addToCart }: Props) => {
                 container
                 spacing={4}
                 sx={{
-                    marginTop: '30px',
+                    marginTop: '20px',
                 }}
             >
                 {productsArray.map(
@@ -39,6 +43,8 @@ const ProductList = ({ addToCart }: Props) => {
                                 price={price}
                                 images={images}
                                 addToCart={addToCart}
+                                changeLikeBtn={changeLikeBtn}
+                                likeBtn={likeBtn}
                             />
                         </Grid>
                     )

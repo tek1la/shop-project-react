@@ -2,6 +2,8 @@ import { Button, Card, CardContent } from '@mui/material'
 import './ProductListItem.css'
 import { useState } from 'react'
 import Quantity from 'components/Quantity/Quantity'
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
+import FavoriteIcon from '@mui/icons-material/Favorite'
 
 type ProductListItemType = {
     id: number
@@ -12,6 +14,10 @@ type ProductListItemType = {
     price: number
     images: string
     addToCart: (id: number, count: number) => void
+    changeLikeBtn: (poductId: number) => void
+    likeBtn: {
+        [id: number]: boolean
+    }
 }
 const ProductListItem = ({
     id,
@@ -22,6 +28,8 @@ const ProductListItem = ({
     price,
     images,
     addToCart,
+    changeLikeBtn,
+    likeBtn,
 }: ProductListItemType) => {
     const [count, setCount] = useState<number>(1)
 
@@ -37,7 +45,11 @@ const ProductListItem = ({
 
     return (
         <Card className="product-list-item" variant="outlined">
-            <CardContent>
+            <CardContent
+                sx={{
+                    position: 'relative',
+                }}
+            >
                 <div className="product-img">
                     <img src={images} alt="" />
                 </div>
@@ -56,6 +68,15 @@ const ProductListItem = ({
                         Add to cart
                     </Button>
                 </div>
+                <Button
+                    sx={{
+                        position: 'absolute',
+                        top: '10px',
+                    }}
+                    onClick={() => changeLikeBtn(id)}
+                >
+                    {likeBtn[id] ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+                </Button>
             </CardContent>
         </Card>
     )

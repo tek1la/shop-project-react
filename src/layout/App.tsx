@@ -14,8 +14,12 @@ type Props = {}
 type ProducrsInCartType = {
     [id: number]: number
 }
+type LikeBtnType = {
+    [id: number]: boolean
+}
 const App = (props: Props) => {
     const [productsInCart, setProductsInCart] = useState<ProducrsInCartType>({})
+    const [likeBtn, setLikeBtn] = useState<LikeBtnType>({})
 
     const addToCart = (id: number, count: number) => {
         setProductsInCart((prevState) => ({
@@ -32,6 +36,13 @@ const App = (props: Props) => {
             [productId]: count,
         }))
     }
+    const changeLikeBtn = (productId: number) => {
+        setLikeBtn((prevState) => ({
+            ...prevState,
+            [productId]: prevState[productId] ? false : true,
+        }))
+        console.log(likeBtn)
+    }
     return (
         <>
             <StyledEngineProvider injectFirst>
@@ -46,7 +57,13 @@ const App = (props: Props) => {
                     <Routes>
                         <Route
                             path="//"
-                            element={<Home addToCart={addToCart} />}
+                            element={
+                                <Home
+                                    addToCart={addToCart}
+                                    changeLikeBtn={changeLikeBtn}
+                                    likeBtn={likeBtn}
+                                />
+                            }
                         />
                         <Route
                             path="cart"
@@ -57,6 +74,8 @@ const App = (props: Props) => {
                                     changeProductQuantity={
                                         changeProductQuantity
                                     }
+                                    changeLikeBtn={changeLikeBtn}
+                                    likeBtn={likeBtn}
                                 />
                             }
                         />

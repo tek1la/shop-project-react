@@ -11,6 +11,10 @@ type Props = {
     CartItem?: any
     deleteProductItem?: (productId: number) => void
     changeProductQuantity?: (productId: number, count: number) => void
+    changeLikeBtn?: (poductId: number) => void
+    likeBtn?: {
+        [id: number]: boolean
+    }
 }
 const CartProductList = ({
     productsInCart,
@@ -18,6 +22,8 @@ const CartProductList = ({
     CartItem = CartProductListItem,
     deleteProductItem,
     changeProductQuantity,
+    changeLikeBtn,
+    likeBtn,
 }: Props) => {
     return (
         <>
@@ -28,6 +34,8 @@ const CartProductList = ({
                     productCount={productsInCart[+productId]}
                     deleteProductItem={deleteProductItem}
                     changeProductQuantity={changeProductQuantity}
+                    changeLikeBtn={changeLikeBtn}
+                    likeBtn={likeBtn}
                 />
             ))}
         </>
