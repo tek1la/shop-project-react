@@ -4,6 +4,8 @@ import { useState } from 'react'
 import Quantity from 'components/Quantity/Quantity'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import FavoriteIcon from '@mui/icons-material/Favorite'
+import { useAppDispatch, useAppSelector } from '../../redux/hooks'
+import { toggleLikeState } from '../../redux/likeReducer'
 
 type ProductListItemType = {
     id: number
@@ -14,7 +16,6 @@ type ProductListItemType = {
     price: number
     images: string
     addToCart: (id: number, count: number) => void
-    isLiked?: boolean
 }
 const ProductListItem = ({
     id,
@@ -25,7 +26,6 @@ const ProductListItem = ({
     price,
     images,
     addToCart,
-    isLiked,
 }: ProductListItemType) => {
     const [count, setCount] = useState<number>(1)
 
@@ -39,6 +39,9 @@ const ProductListItem = ({
         addToCart(id, count)
     }
 
+    const isLiked = useAppSelector((state) => state.productLikeState[id])
+
+    const dispatch = useAppDispatch()
     return (
         <Card className="product-list-item" variant="outlined">
             <CardContent
@@ -46,12 +49,15 @@ const ProductListItem = ({
                     position: 'relative',
                 }}
             >
+                <Button
+                    variant="outlined"
+                    onClick={() => dispatch(toggleLikeState(id))}
+                >
+                    {isLiked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+                </Button>
                 <div className="product-img">
                     <img src={images} alt="" />
                 </div>
-                <Button>
-                    {isLiked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-                </Button>
                 <h2 className="product-title">{title}</h2>
                 <p className="product-description">{description}</p>
                 <div className="product-features">Type: {type}</div>
