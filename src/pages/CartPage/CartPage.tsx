@@ -9,17 +9,11 @@ type Props = {
     }
     deleteProductItem: (productId: number) => void
     changeProductQuantity: (productId: number, count: number) => void
-    changeLikeBtn: (poductId: number) => void
-    likeBtn: {
-        [id: number]: boolean
-    }
 }
 const CartPage = ({
     productsInCart,
     deleteProductItem,
     changeProductQuantity,
-    changeLikeBtn,
-    likeBtn,
 }: Props) => {
     return (
         <div>
@@ -38,8 +32,6 @@ const CartPage = ({
                     CartItem={CartProductListItemExtended}
                     deleteProductItem={deleteProductItem}
                     changeProductQuantity={changeProductQuantity}
-                    changeLikeBtn={changeLikeBtn}
-                    likeBtn={likeBtn}
                 />
             </Grid>
             <Grid

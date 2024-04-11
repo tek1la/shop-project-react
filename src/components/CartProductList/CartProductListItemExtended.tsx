@@ -2,26 +2,20 @@ import { Button, Card, CardContent, Grid } from '@mui/material'
 import { Product } from 'utils/productsArray'
 import DeleteIcon from '@mui/icons-material/Delete'
 import Quantity from 'components/Quantity/Quantity'
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
-import FavoriteIcon from '@mui/icons-material/Favorite'
+// import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
+// import FavoriteIcon from '@mui/icons-material/Favorite'
 
 type Props = {
     product: Product
     productCount: number
     deleteProductItem: (productId: number) => void
     changeProductQuantity: (productId: number, count: number) => void
-    changeLikeBtn: (poductId: number) => void
-    likeBtn: {
-        [id: number]: boolean
-    }
 }
 const CartProductListItemExtended = ({
     deleteProductItem,
     changeProductQuantity,
     product,
     productCount,
-    changeLikeBtn,
-    likeBtn,
 }: Props) => {
     return (
         <Grid item xs={12} sm={6} md={4}>
@@ -57,20 +51,6 @@ const CartProductListItemExtended = ({
                         onClick={() => deleteProductItem(+product.id)}
                     >
                         <DeleteIcon />
-                    </Button>
-                    <Button
-                        sx={{
-                            position: 'absolute',
-                            top: '10px',
-                            left: '15px',
-                        }}
-                        onClick={() => changeLikeBtn(+product.id)}
-                    >
-                        {likeBtn[+product.id] ? (
-                            <FavoriteIcon />
-                        ) : (
-                            <FavoriteBorderIcon />
-                        )}
                     </Button>
                 </CardContent>
             </Card>

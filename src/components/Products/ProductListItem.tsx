@@ -14,10 +14,7 @@ type ProductListItemType = {
     price: number
     images: string
     addToCart: (id: number, count: number) => void
-    changeLikeBtn: (poductId: number) => void
-    likeBtn: {
-        [id: number]: boolean
-    }
+    isLiked?: boolean
 }
 const ProductListItem = ({
     id,
@@ -28,8 +25,7 @@ const ProductListItem = ({
     price,
     images,
     addToCart,
-    changeLikeBtn,
-    likeBtn,
+    isLiked,
 }: ProductListItemType) => {
     const [count, setCount] = useState<number>(1)
 
@@ -53,6 +49,9 @@ const ProductListItem = ({
                 <div className="product-img">
                     <img src={images} alt="" />
                 </div>
+                <Button>
+                    {isLiked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+                </Button>
                 <h2 className="product-title">{title}</h2>
                 <p className="product-description">{description}</p>
                 <div className="product-features">Type: {type}</div>
@@ -68,15 +67,6 @@ const ProductListItem = ({
                         Add to cart
                     </Button>
                 </div>
-                <Button
-                    sx={{
-                        position: 'absolute',
-                        top: '10px',
-                    }}
-                    onClick={() => changeLikeBtn(id)}
-                >
-                    {likeBtn[id] ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-                </Button>
             </CardContent>
         </Card>
     )
